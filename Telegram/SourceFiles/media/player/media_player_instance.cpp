@@ -154,7 +154,10 @@ void Instance::handleSongUpdate(const AudioMsgId &audioId) {
 
 void Instance::setCurrent(const AudioMsgId &audioId) {
 	if (const auto data = getData(audioId.type())) {
-		if (data->current == audioId) {
+		if (data->current == audioId
+			|| ((data->current.contextId() == audioId.contextId())
+				&& (data->current.audio() == audioId.audio())
+				&& (data->current.type() == audioId.type()))) {
 			return;
 		}
 		const auto changed = [&](const AudioMsgId & check) {

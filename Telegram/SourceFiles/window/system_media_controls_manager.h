@@ -19,6 +19,10 @@ namespace Window {
 class Controller;
 } // namespace Window
 
+namespace Media::Streaming {
+class Instance;
+} // namespace Media::Streaming
+
 namespace Window {
 
 class SystemMediaControlsManager {
@@ -32,6 +36,7 @@ private:
 	const std::unique_ptr<base::Platform::SystemMediaControls> _controls;
 
 	std::vector<std::shared_ptr<Data::DocumentMedia>> _cachedMediaView;
+	std::unique_ptr<Media::Streaming::Instance> _streamed;
 
 	rpl::lifetime _lifetimeDownload;
 	rpl::lifetime _lifetime;
